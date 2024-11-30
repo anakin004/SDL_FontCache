@@ -20,7 +20,7 @@ FC_FreeFont(font);
 # Function Documentation
 
 ```
-Some addition documentation:
+Some additional documentation:
 ```
 ## `FC_MakeRect`
 
