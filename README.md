@@ -19,6 +19,9 @@ FC_Draw(font, renderer, 0, 0, "This is %s.\n It works.", "example text");
 FC_FreeFont(font);
 # Function Documentation
 
+```
+Some addition documentation:
+```
 ## `FC_MakeRect`
 
 **Purpose**: Creates and returns a rectangle structure.
