@@ -17,88 +17,107 @@ FC_Draw(font, renderer, 0, 0, "This is %s.\n It works.", "example text");
 ...
 
 FC_FreeFont(font);
-```
-functions:
-  - name: FC_MakeRect
-    purpose: Creates and returns a rectangle structure.
-    parameters:
-      - name: x
-        type: float
-        description: The X-coordinate of the top-left corner of the rectangle.
-      - name: y
-        type: float
-        description: The Y-coordinate of the top-left corner of the rectangle.
-      - name: w
-        type: float
-        description: The width of the rectangle.
-      - name: h
-        type: float
-        description: The height of the rectangle.
-    returns:
-      type: FC_Rect
-      description: A rectangle structure with the given positional and dimensional values.
-    description: |
-      This function initializes and returns an `FC_Rect` structure used for creating rectangles. These can be used in various graphical operations such as rendering text or drawing shapes.
+# Function Documentation
 
-  - name: FC_LoadFont
-    purpose: Loads a TrueType font from a specified file into memory.
-    parameters:
-      - name: font
-        type: FC_Font*
-        description: A pointer to the FC_Font structure that will hold the font data.
-      - name: renderer
-        type: SDL_Renderer*
-        description: The SDL renderer for rendering the font.
-      - name: filename
-        type: const char*
-        description: The path to the TrueType font file.
-      - name: point_size
-        type: int
-        description: The size of the font in points.
-      - name: color
-        type: SDL_Color
-        description: The color of the font.
-      - name: style
-        type: int
-        description: The style of the font (e.g., normal, bold, italic).
-    returns:
-      type: int
-      description: Returns 0 if successful, or a negative error code if loading failed.
-    description: |
-      This function loads a TrueType font from the specified file and creates a texture for rendering. It stores the font information in the provided `FC_Font` structure, which can then be used to render text with the given settings.
+## `FC_MakeRect`
 
-  - name: FC_Draw
-    purpose: Renders a text string to the screen at a specific position.
-    parameters:
-      - name: font
-        type: FC_Font*
-        description: A pointer to the FC_Font structure that holds the font to render.
-      - name: renderer
-        type: SDL_Renderer*
-        description: The SDL renderer used for rendering the text.
-      - name: x
-        type: float
-        description: The X-coordinate of the position where the text should be drawn.
-      - name: y
-        type: float
-        description: The Y-coordinate of the position where the text should be drawn.
-      - name: text
-        type: const char*
-        description: The text string to be rendered. Can include format specifiers for dynamic content.
-    returns:
-      type: void
-      description: This function does not return a value.
-    description: |
-      This function draws a formatted string at the specified coordinates (`x`, `y`) using the provided font and renderer. It supports formatted text, allowing you to dynamically pass in additional arguments, such as strings or numbers, to be inserted into the text.
+**Purpose**: Creates and returns a rectangle structure.
 
-  - name: FC_FreeFont
-    purpose: Frees the memory allocated for a font.
-    parameters:
-      - name: font
-        type: FC_Font*
-        description: A pointer to the FC_Font structure that should be freed.
-    returns:
-      type: void
-      description: This function does not return a value.
-    description: |
-      This function frees the memory allocated for a font object, ensuring that no memory leaks occur. It should be called when you no longer need the font.
+### Parameters:
+- `x` (float): The X-coordinate of the top-left corner of the rectangle.
+- `y` (float): The Y-coordinate of the top-left corner of the rectangle.
+- `w` (float): The width of the rectangle.
+- `h` (float): The height of the rectangle.
+
+### Returns:
+- `FC_Rect`: A rectangle structure with the given positional and dimensional values.
+
+### Description:
+This function initializes and returns an `FC_Rect` structure used for creating rectangles. These can be used in various graphical operations such as rendering text or drawing shapes.
+
+---
+
+## `FC_LoadFont`
+
+**Purpose**: Loads a TrueType font from a specified file into memory.
+
+### Parameters:
+- `font` (FC_Font*): A pointer to the font object to be loaded.
+- `renderer` (SDL_Renderer*): The SDL renderer used for loading the font.
+- `fontPath` (const char*): Path to the TrueType font file.
+- `fontSize` (int): The desired size of the font.
+- `color` (SDL_Color): The color of the font.
+- `style` (int): Style flags for the font (e.g., bold, italic).
+
+### Returns:
+- `FC_Font*`: A pointer to the newly loaded font object.
+
+### Description:
+This function loads a font from a specified TrueType file and returns a pointer to the loaded font object. It also handles setting the font style and color.
+
+---
+
+## `FC_Draw`
+
+**Purpose**: Renders a string of text at specified coordinates using a given font.
+
+### Parameters:
+- `font` (FC_Font*): A pointer to the font object used to render the text.
+- `renderer` (SDL_Renderer*): The SDL renderer used for drawing.
+- `x` (float): The X-coordinate where the text will be rendered.
+- `y` (float): The Y-coordinate where the text will be rendered.
+- `text` (const char*): The string of text to be rendered.
+
+### Returns:
+- `void`: This function does not return any value.
+
+### Description:
+This function renders a text string at the given position using the provided font and color. It is capable of rendering UTF-8 encoded text.
+
+---
+
+## `FC_FreeFont`
+
+**Purpose**: Frees the memory used by a font object.
+
+### Parameters:
+- `font` (FC_Font*): A pointer to the font object to be freed.
+
+### Returns:
+- `void`: This function does not return any value.
+
+### Description:
+This function frees the memory allocated for a font object previously loaded using `FC_LoadFont`. It is important to call this function to avoid memory leaks.
+
+---
+
+## `FC_MakeColor`
+
+**Purpose**: Creates an SDL_Color structure with the given RGBA values.
+
+### Parameters:
+- `r` (Uint8): The red component of the color (0-255).
+- `g` (Uint8): The green component of the color (0-255).
+- `b` (Uint8): The blue component of the color (0-255).
+- `a` (Uint8): The alpha (transparency) component of the color (0-255).
+
+### Returns:
+- `SDL_Color`: The color structure with the specified RGBA values.
+
+### Description:
+This function creates an SDL_Color structure that can be used to define the color of fonts, shapes, or other graphical elements in the SDL rendering context.
+
+---
+
+## `FC_FreeText`
+
+**Purpose**: Frees the memory used by a text object.
+
+### Parameters:
+- `text` (FC_Text*): A pointer to the text object to be freed.
+
+### Returns:
+- `void`: This function does not return any value.
+
+### Description:
+This function frees the memory allocated for a text object created by `FC_LoadText`. It is important to call this function to avoid memory leaks when you are done with the text object.
